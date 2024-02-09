@@ -1,0 +1,93 @@
+$loader-speed: 1.25s;
+$loader-curve: ease;
+$loader-center-color: #5614ff;
+
+@mixin loader-shape {
+    clip-path: polygon(50% 0%, 75% 25%, 75% 75%, 50% 100%, 25% 75%, 25% 25%);
+}
+
+@mixin loader-attr($top, $left, $color) {
+    @include loader-shape;
+    position: absolute;
+    height: 30%;
+    width: 30%;
+    top: $top;
+    left: $left;
+    background-color: $color;
+    background: radial-gradient(circle, lighten($color, 25%), $color);
+    animation: spin-left $loader-speed $loader-curve infinite;
+}
+
+.loaderContainer {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    aspect-ratio: 1 / 1;
+}
+
+.loaderCenter {
+    @include loader-shape;
+    z-index: 1003;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    background-color: $loader-center-color;
+    background: radial-gradient(
+        circle,
+        lighten($loader-center-color, 15%),
+        $loader-center-color
+    );
+    border-radius: 50%;
+}
+
+.loaderOrbit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1002;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    animation: spin-right $loader-speed $loader-curve infinite;
+}
+
+.loaderL1 {
+    @include loader-attr(-15%, 35%, #ff0000e8);
+}
+.loaderL2 {
+    @include loader-attr(25%, 85%, #ffbf00);
+}
+.loaderL3 {
+    @include loader-attr(75%, 65%, #15ff00);
+}
+.loaderL4 {
+    @include loader-attr(75%, 5%, #0073ff);
+}
+.loaderL5 {
+    @include loader-attr(25%, -15%, #ff32f8);
+}
+
+.inner {
+    @include loader-shape;
+    position: relative;
+    top: 15%;
+    left: 15%;
+    height: 70%;
+    width: 70%;
+    background: inherit;
+    filter: saturate(250%);
+}
+
+@keyframes spin-right {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin-left {
+    to {
+        transform: rotate(-360deg);
+    }
+}
