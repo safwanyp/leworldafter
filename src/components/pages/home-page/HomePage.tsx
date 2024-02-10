@@ -1,4 +1,4 @@
-import CrystalLoader from "@/components/crystal-loader/crystal-loader";
+import CrystalLoader from "@/components/ui/crystal-loader/crystal-loader";
 
 export default function HomePage() {
     return (

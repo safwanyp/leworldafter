@@ -1,6 +1,4 @@
-import Head from "next/head";
-import Image from "next/image";
-import HomePage from "./HomePage";
+import HomePage from "../components/pages/home-page/HomePage";
 
 export default function Home() {
     return (
